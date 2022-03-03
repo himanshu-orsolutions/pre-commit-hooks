@@ -1,7 +1,8 @@
 import os
 
 def main():
-    os.system("mvnw pmd:check")
+    res = os.system("mvnw pmd:check")
+    return 0 if res == 0 else 1
 
 if __name__ == '__main__':
     raise SystemExit(main())
