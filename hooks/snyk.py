@@ -1,8 +1,14 @@
-import os
+import subprocess
 
 def main():
-    res = os.system("snyk test --severity-threshold=high")
-    return 0 if res == 0 else 1
+    result = subprocess.run('snyk test --severity-threshold=high', capture_output=True, shell=True)
+
+    if result.returncode == 0:
+        print(result.stdout)
+        return 0
+    else:
+        print(result.stderr)
+        return 1
 
 if __name__ == '__main__':
     raise SystemExit(main())
