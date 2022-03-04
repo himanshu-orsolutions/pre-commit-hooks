@@ -1,14 +1,17 @@
-import subprocess
+from subprocess import check_output, CalledProcessError, STDOUT
+import sys
+
+def execute_command(command):
+    try:
+        check_output(command, stderr=STDOUT, shell=True)
+        success = True 
+    except CalledProcessError as e:
+        success = False
+    return success
 
 def main():
-    result = subprocess.run('snyk test --severity-threshold=high', capture_output=True, shell=True)
-
-    if result.returncode == 0:
-        print(result.stdout)
-        return 0
-    else:
-        print(result.stderr)
-        return 1
+    success = execute_command('snyk test --severity-threshold=high')
+    return 0 if success else 1
 
 if __name__ == '__main__':
-    raise SystemExit(main())
+    sys.exit(main())
