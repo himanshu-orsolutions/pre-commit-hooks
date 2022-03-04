@@ -19,7 +19,7 @@
 - id: snyk
   name: Snyk
   description: Runs snyk on files
-  entry: snyk
+  entry: snyk2
   language: python
   pass_filenames: false
 - id: unit-test
