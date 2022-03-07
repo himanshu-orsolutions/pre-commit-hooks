@@ -1,7 +1,7 @@
 import subprocess
 
 def main():
-    status, output = subprocess.getstatusoutput('mvnw spotless:check')
+    status, output = subprocess.getstatusoutput('mvn spotless:check')
     print(output)
     return 0 if status==0 else 1
 
